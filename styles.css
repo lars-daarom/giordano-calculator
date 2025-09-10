@@ -152,7 +152,7 @@
   #ecs-calc .savings-value{font-size:1.5rem;font-weight:800;color:#14532d}
   #ecs-calc .savings-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 
-  #ecs-calc .nav-container{margin-top:35px;padding-top:1.5rem;border-top:1px solid #e5e7eb;position:sticky;bottom:0;background:inherit}
+  #ecs-calc .nav-container{margin-top:35px;padding-top:1.5rem;border-top:1px solid #e5e7eb;position:sticky;bottom:0;background:#fff;z-index:10}
   #ecs-calc .savings-summary{background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);border:0px;border-radius:1rem;padding:1.5rem;position:relative;overflow:hidden}
   #ecs-calc .savings-summary-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;color:#14532d}
   #ecs-calc .savings-summary-title{font-size:1.25rem;font-weight:800;color:#14532d}
