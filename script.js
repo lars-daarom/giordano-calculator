@@ -2,6 +2,12 @@
   const root = document.getElementById('ecs-calc');
   const $ = sel => root.querySelector(sel);
 
+  // Currency based on browser language
+  const lang = navigator.language || 'en';
+  const currency = lang.startsWith('en')
+    ? { symbol:'$', icon:'DollarSign', locale:lang }
+    : { symbol:'€', icon:'EuroSign', locale:lang };
+
   // --- State ---
   let currentStep = 0;
   
@@ -24,7 +30,9 @@
   ];
 
   // --- Utils ---
-  function fmt(n){ return new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n); }
+  function fmt(n){
+    return new Intl.NumberFormat(currency.locale,{minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
+  }
 
   function calc(){
     // Huidige kosten berekeningen
@@ -82,6 +90,7 @@
       Recycle:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>',
       TrendingUp:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>',
       DollarSign:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>',
+      EuroSign:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7h-5a4 4 0 100 8h5M11 9h7M11 15h7"/>',
       Clock:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',
       Target:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>',
       CheckCircle:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
@@ -164,7 +173,7 @@
     function frame(now){
       const progress = Math.min((now - startTime)/duration,1);
       const value = end * progress;
-      el.textContent = '€' + fmt(value);
+      el.textContent = currency.symbol + fmt(value);
       if(progress < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -251,8 +260,8 @@
             </div>
             <div class="step-inputs-section">
               <div class="grid grid-cols-2 gap-6">
-                ${numberInput('pricePerBox', pricePerBox, 'Price per cardboard box (180 eggs)', '€', 0.01)}
-                ${numberInput('pricePerTray', pricePerTray, 'Price per cardboard tray', '€', 0.01)}
+                ${numberInput('pricePerBox', pricePerBox, 'Price per cardboard box (180 eggs)', currency.symbol, 0.01)}
+                ${numberInput('pricePerTray', pricePerTray, 'Price per cardboard tray', currency.symbol, 0.01)}
                 ${numberInput('boxesPerShipment', boxesPerShipment, 'Boxes per shipment', '', 50, 50)}
                 ${numberInput('shipmentsPerWeek', shipmentsPerWeek, 'Shipments per week', '', 1, 1)}
               </div>
@@ -265,9 +274,9 @@
               <div class="info-box gray">
                 <div class="cost-display-section">
                   <div class="cost-display-left">${icon('Wallet','w-5 h-5')}<span class="font-medium">Weekly packaging cost</span></div>
-                  <span class="cost-display-amount">€${fmt(calculations.weeklyCostCurrent)}</span>
+                  <span class="cost-display-amount">${currency.symbol}${fmt(calculations.weeklyCostCurrent)}</span>
                 </div>
-                <p class="cost-breakdown">= ${calculations.boxesPerWeek} boxes × ( €${fmt(pricePerBox)} + 7 × €${fmt(pricePerTray)} )</p>
+                <p class="cost-breakdown">= ${calculations.boxesPerWeek} boxes × ( ${currency.symbol}${fmt(pricePerBox)} + 7 × ${currency.symbol}${fmt(pricePerTray)} )</p>
               </div>
             </div>
           </div>
@@ -301,17 +310,17 @@
 
                 <div class="card blue">
                   <div class="card-header"><div class="title">${icon('Target','w-5 h-5')}<span>Fixed Pricing</span></div></div>
-                  <div class="kpi"><span class="label">Price per crate</span><span class="value">€${ecsCratePrice}</span></div>
+                  <div class="kpi"><span class="label">Price per crate</span><span class="value">${currency.symbol}${ecsCratePrice}</span></div>
                   <div class="kpi"><span class="label">Lifespan</span><span class="value">${crateLifespan} years</span></div>
-                  <div class="kpi"><span class="label">Total investment</span><span class="value">€${fmt(calculations.totalEcsInvestment)}</span></div>
+                  <div class="kpi"><span class="label">Total investment</span><span class="value">${currency.symbol}${fmt(calculations.totalEcsInvestment)}</span></div>
                   <div class="help">One-time investment</div>
                 </div>
 
                 <div class="card gray">
                   <div class="card-header"><div class="title">${icon('Calculator','w-5 h-5')}<span>Annual Cost</span></div></div>
-                  <div class="kpi"><span class="label">Investment</span><span class="value">€${fmt(calculations.totalEcsInvestment)}</span></div>
+                  <div class="kpi"><span class="label">Investment</span><span class="value">${currency.symbol}${fmt(calculations.totalEcsInvestment)}</span></div>
                   <div class="kpi"><span class="label">Divided by</span><span class="value">${crateLifespan} years</span></div>
-                  <div class="kpi"><span class="label">Cost per year</span><span class="value">€${fmt(calculations.ecsAnnualCost)}</span></div>
+                  <div class="kpi"><span class="label">Cost per year</span><span class="value">${currency.symbol}${fmt(calculations.ecsAnnualCost)}</span></div>
                   <div class="help">Amortized over lifespan</div>
                 </div>
               </div>
@@ -340,26 +349,26 @@
               <!-- Total Savings Summary -->
               <div class="savings-summary">
                 <div class="savings-summary-header">
-                  ${icon('DollarSign','w-6 h-6')}
+                  ${icon(currency.icon,'w-6 h-6')}
                   <span class="savings-summary-title">Your Total Savings with crates</span>
                 </div>
                 <div class="savings-metrics">
                   <div class="savings-metric">
                     <p class="savings-metric-label">Save per Week</p>
-                    <p class="savings-metric-value">€${fmt(calculations.savingsPerWeek)}</p>
+                    <p class="savings-metric-value">${currency.symbol}${fmt(calculations.savingsPerWeek)}</p>
                   </div>
                   <div class="savings-metric">
                     <p class="savings-metric-label">Save per Year</p>
-                    <p class="savings-metric-value">€${fmt(calculations.savingsPerYear)}</p>
+                    <p class="savings-metric-value">${currency.symbol}${fmt(calculations.savingsPerYear)}</p>
                   </div>
                   <div class="savings-metric">
                     <p class="savings-metric-label">Save per Month</p>
-                    <p class="savings-metric-value">€${fmt(calculations.monthlySavings)}</p>
+                    <p class="savings-metric-value">${currency.symbol}${fmt(calculations.monthlySavings)}</p>
                   </div>
                 </div>
                 <div class="savings-summary-footer">
                   <p>Total savings over 10 years</p>
-                  <p id="ecs-totalSavings">€0.00</p>
+                  <p id="ecs-totalSavings">${currency.symbol}0.00</p>
                 </div>
               </div>
             </div>
