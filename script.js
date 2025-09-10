@@ -330,7 +330,7 @@
                   ${icon('DollarSign','w-6 h-6')}
                   <span style="font-size:1.25rem;font-weight:800;color:#14532d">Your Total Savings with crates</span>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem">
+                <div class="savings-metrics">
                   <div style="text-align:center;padding:1rem;background:rgba(255,255,255,.9);border-radius:.75rem">
                     <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#15803d;margin-bottom:.5rem;font-weight:600">Save per Week</p>
                     <p style="font-size:1.75rem;font-weight:900;color:#14532d;line-height:1">€${fmt(calculations.savingsPerWeek)}</p>
