@@ -397,6 +397,8 @@
     #ecs-calc .info-box.green .font-medium{color:#86efac}
     #ecs-calc .info-box.red{background:#7f1d1d;border-color:#b91c1c}
     #ecs-calc .info-box.yellow{background:#78350f;border-color:#eab308}
+    #ecs-calc .cost-display-amount{color:#f3f4f6}
+    #ecs-calc .cost-breakdown{color:#d1d5db}
     #ecs-calc .cost-card{background:#1f2937;border-color:#374151}
     #ecs-calc .card{background:#1f2937;border-color:#374151}
     #ecs-calc .kpi{background:#1f2937;border-color:#374151}
