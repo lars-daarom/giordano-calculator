@@ -157,6 +157,19 @@
     }
   }
 
+  function animateCurrency(id, end, duration=1200){
+    const el = root.querySelector('#'+CSS.escape(id));
+    if(!el) return;
+    const startTime = performance.now();
+    function frame(now){
+      const progress = Math.min((now - startTime)/duration,1);
+      const value = end * progress;
+      el.textContent = '€' + fmt(value);
+      if(progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
   // Update helpers
   function setValue(id, val, {animateStep=false}={}){
     const v = parseFloat(val)||0;
@@ -346,7 +359,7 @@
                 </div>
                 <div style="text-align:center;margin-top:1.25rem;padding-top:1.25rem;border-top:2px solid rgba(134,239,172,.3)">
                   <p style="font-size:.875rem;color:#15803d;margin-bottom:.5rem">Total savings over 10 years</p>
-                  <p style="font-size:2.5rem;font-weight:900;color:#14532d;line-height:1">€${fmt(calculations.savingsTenYears)}</p>
+                  <p id="ecs-totalSavings" style="font-size:2.5rem;font-weight:900;color:#14532d;line-height:1">€0.00</p>
                 </div>
               </div>
             </div>
@@ -356,6 +369,10 @@
     }
 
     c.innerHTML = html;
+
+    if(currentStep === 2){
+      animateCurrency('ecs-totalSavings', calculations.savingsTenYears);
+    }
 
     // Bind events voor +/- knoppen
     c.querySelectorAll('[data-inc]').forEach(btn=>{
