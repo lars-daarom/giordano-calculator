@@ -65,7 +65,7 @@
   /* ====================================================================
      HEADER
   ==================================================================== */
-  #ecs-calc .bg-gradient-to-r{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%)}
+  #ecs-calc .bg-gradient-to-r{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);border-radius:36px 0 0 0}
   #ecs-calc .bg-red-600{background:#dc2626}
   #ecs-calc .px-4{padding-inline:1rem}
   #ecs-calc .py-2{padding-block:.5rem}
@@ -381,7 +381,7 @@
     #ecs-calc { color:#f3f4f6; }
     #ecs-calc .bg-gradient-to-br{background:linear-gradient(135deg,#111827 0%,#1f2937 100%)}
     #ecs-calc .bg-white{background:#1f2937}
-    #ecs-calc .bg-gradient-to-r{background:linear-gradient(135deg,#1f2937 0%,#0f172a 100%)}
+    #ecs-calc .bg-gradient-to-r{background:linear-gradient(135deg,#1f2937 0%,#0f172a 100%);border-radius:36px 0 0 0}
     #ecs-calc .text-gray-600{color:#d1d5db}
     #ecs-calc .text-gray-700{color:#e5e7eb}
     #ecs-calc .nav-btn{background:#374151;border-color:#4b5563;color:#f3f4f6}
