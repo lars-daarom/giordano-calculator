@@ -274,7 +274,7 @@
             <div class="step-info-section">
               <div class="info-box blue">
                 <div class="info-box-header">${icon('Recycle','w-5 h-5 text-blue-600')}<span class="font-medium">Why 3x crates needed?</span></div>
-                <p class="info-box-text">You need 3 sets of crates in rotation: 1 set for cleaning, 1 set in return transport, and 1 set for current shipment. This ensures continuous operation.</p>
+                <p class="info-box-text">You need 3 sets of crates in rotation: 1 set for cleaning, 1 set in return transport, and 1 set for current shipment. This ensures continuous operation. In this new setup, we assume plastic egg trays are already being used.</p>
               </div>
 
               <div class="grid grid-cols-3 gap-6">
