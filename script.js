@@ -90,7 +90,7 @@
       Recycle:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>',
       TrendingUp:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>',
       DollarSign:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v20"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 5H9a3 3 0 000 6h6a3 3 0 010 6H6"/>',
-      Euro:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h12"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15h12"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 5h-6a5 5 0 000 10h6"/>',
+      Euro:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h12"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14h9"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 6a7.7 7.7 0 0 0-5.2-2A7.9 7.9 0 0 0 6 12c0 4.4 3.5 8 7.8 8 2 0 3.8-.8 5.2-2"/>',
       Clock:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',
       Target:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>',
       CheckCircle:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
