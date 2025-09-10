@@ -329,6 +329,9 @@
     background:#e4251e;
     border-color:#e4251e;
   }
+  #ecs-calc .nav-btn.prev:hover:not(:disabled){
+    color:#374151;
+  }
 
   /* CTA Button */
   #ecs-calc .cta-btn{
@@ -383,6 +386,7 @@
     #ecs-calc .text-gray-700{color:#e5e7eb}
     #ecs-calc .nav-btn{background:#374151;border-color:#4b5563;color:#f3f4f6}
     #ecs-calc .nav-btn:hover:not(:disabled){border-color:#4b5563;color:#fff}
+    #ecs-calc .nav-btn.prev:hover:not(:disabled){color:#f3f4f6}
     #ecs-calc .nav-container{border-top-color:#4b5563}
     #ecs-calc .bg-blue-600{background:#2563eb}
     #ecs-calc .bg-gray-300{background:#4b5563}
