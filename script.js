@@ -245,7 +245,7 @@
         html = `
           <div class="${wrapClass}">
             <div class="step-header-section">
-              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-blue">${icon('Package','w-8 h-8 text-blue-600')}</div>
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-blue">${icon('Package','w-8 h-8')}</div>
               <h2 class="text-2xl font-bold mb-2">Step 1: Current Packaging Costs</h2>
               <p class="text-gray-600">Enter your current packaging costs and delivery frequency</p>
             </div>
@@ -259,12 +259,12 @@
             </div>
             <div class="step-info-section">
               <div class="info-box blue">
-                <div class="info-box-header">${icon('Calculator','w-5 h-5 text-blue-600')}<span class="font-medium">Weekly Volume</span></div>
+                <div class="info-box-header">${icon('Calculator','w-5 h-5')}<span class="font-medium">Weekly Volume</span></div>
                 <p class="info-box-text">You ship ${calculations.boxesPerWeek} boxes per week (${boxesPerShipment} boxes × ${shipmentsPerWeek} shipments)</p>
               </div>
               <div class="info-box gray">
                 <div class="cost-display-section">
-                  <div class="cost-display-left">${icon('Wallet','w-5 h-5 text-blue-600')}<span class="font-medium">Weekly packaging cost</span></div>
+                  <div class="cost-display-left">${icon('Wallet','w-5 h-5')}<span class="font-medium">Weekly packaging cost</span></div>
                   <span class="cost-display-amount">€${fmt(calculations.weeklyCostCurrent)}</span>
                 </div>
                 <p class="cost-breakdown">= ${calculations.boxesPerWeek} boxes × ( €${fmt(pricePerBox)} + 7 × €${fmt(pricePerTray)} )</p>
@@ -279,14 +279,14 @@
         html = `
           <div class="${wrapClass}">
             <div class="step-header-section">
-              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-green">${icon('Recycle','w-8 h-8 text-blue-600')}</div>
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-green">${icon('Recycle','w-8 h-8')}</div>
               <h2 class="text-2xl font-bold mb-2">Step 2: Crate Solution</h2>
               <p class="text-gray-600">Sustainable crates that last 10 years and eliminate the need for cardboard trays</p>
             </div>
 
             <div class="step-info-section">
               <div class="info-box blue">
-                <div class="info-box-header">${icon('Recycle','w-5 h-5 text-blue-600')}<span class="font-medium">Why 3x crates needed?</span></div>
+                <div class="info-box-header">${icon('Recycle','w-5 h-5')}<span class="font-medium">Why 3x crates needed?</span></div>
                 <p class="info-box-text">You need 3 sets of crates in rotation: 1 set for cleaning, 1 set in return transport, and 1 set for current shipment. This ensures continuous operation. In this new setup, we assume plastic egg trays are already being used.</p>
               </div>
 
@@ -308,7 +308,7 @@
                 </div>
 
                 <div class="card gray">
-                  <div class="card-header"><div class="title">${icon('Calculator','w-5 h-5 text-blue-600')}<span>Annual Cost</span></div></div>
+                  <div class="card-header"><div class="title">${icon('Calculator','w-5 h-5')}<span>Annual Cost</span></div></div>
                   <div class="kpi"><span class="label">Investment</span><span class="value">€${fmt(calculations.totalEcsInvestment)}</span></div>
                   <div class="kpi"><span class="label">Divided by</span><span class="value">${crateLifespan} years</span></div>
                   <div class="kpi"><span class="label">Cost per year</span><span class="value">€${fmt(calculations.ecsAnnualCost)}</span></div>
@@ -329,7 +329,7 @@
           <div class="${wrapClass}">
             <div class="step-header-section">
               <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-orange">
-                ${icon('Calculator','w-8 h-8 text-blue-600')}
+                ${icon('Calculator','w-8 h-8')}
               </div>
               <h2 class="text-2xl font-bold mb-2">Step 3: Cost Comparison & Savings</h2>
               <p class="text-gray-600">See how crates save you money compared to cardboard boxes</p>
