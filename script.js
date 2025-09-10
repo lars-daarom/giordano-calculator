@@ -418,10 +418,10 @@
   }
 
   function renderIndicatorAndNav(){
-    renderIndicator();
-    const prevBtn = $('#ecs-prevBtn');
-    const nextBtn = $('#ecs-nextBtn');
-    const ctaBtn = $('#ecs-cta');
+  renderIndicator();
+  const prevBtn = $('#ecs-prevBtn');
+  const nextBtn = $('#ecs-nextBtn');
+  const ctaBtn = $('#ecs-cta');
     
     prevBtn.disabled = currentStep === 0;
     
@@ -435,9 +435,13 @@
     }
   }
 
+  function scrollToCalcTop(){
+    root.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
   // Navigation
-  function next(){ if(currentStep<2){ currentStep++; renderIndicatorAndNav(); renderStep({animate:true}); } }
-  function prev(){ if(currentStep>0){ currentStep--; renderIndicatorAndNav(); renderStep({animate:true}); } }
+  function next(){ if(currentStep<2){ currentStep++; renderIndicatorAndNav(); renderStep({animate:true}); scrollToCalcTop(); } }
+  function prev(){ if(currentStep>0){ currentStep--; renderIndicatorAndNav(); renderStep({animate:true}); scrollToCalcTop(); } }
 
   // Init
   function init(){
