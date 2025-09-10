@@ -149,6 +149,20 @@
   #ecs-calc .savings-value{font-size:1.5rem;font-weight:800;color:#14532d}
   #ecs-calc .savings-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 
+  #ecs-calc .nav-container{margin-top:35px;padding-top:1.5rem;border-top:1px solid #e5e7eb}
+  #ecs-calc .savings-summary{background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);border:0px;border-radius:1rem;padding:1.5rem;position:relative;overflow:hidden}
+  #ecs-calc .savings-summary-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+  #ecs-calc .savings-summary-title{font-size:1.25rem;font-weight:800;color:#14532d}
+  #ecs-calc .savings-metric{text-align:center;padding:1rem;background:rgba(255,255,255,.9);border-radius:.75rem}
+  #ecs-calc .savings-metric-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#15803d;margin-bottom:.5rem;font-weight:600}
+  #ecs-calc .savings-metric-value{font-size:1.75rem;font-weight:900;color:#14532d;line-height:1}
+  #ecs-calc .savings-summary-footer{text-align:center;margin-top:1.25rem;padding-top:1.25rem;border-top:2px solid rgba(134,239,172,.3)}
+  #ecs-calc .savings-summary-footer p{font-size:.875rem;color:#15803d;margin-bottom:.5rem}
+  #ecs-calc #ecs-totalSavings{font-size:2.5rem;font-weight:900;color:#14532d;line-height:1}
+  #ecs-calc .icon-bg-blue{background:#dbeafe}
+  #ecs-calc .icon-bg-green{background:#dcfce7}
+  #ecs-calc .icon-bg-orange{background:#ffedd5}
+
   /* ====================================================================
      STEP 2 — CARD COMPONENT
   ==================================================================== */
@@ -366,4 +380,34 @@
     #ecs-calc .text-gray-700{color:#e5e7eb}
     #ecs-calc .nav-btn{background:#374151;border-color:#4b5563;color:#f3f4f6}
     #ecs-calc .nav-btn:hover:not(:disabled){border-color:#4b5563;color:#fff}
+    #ecs-calc .nav-container{border-top-color:#4b5563}
+    #ecs-calc .info-box.blue{background:#1e3a8a;border-color:#1e40af}
+    #ecs-calc .info-box.blue .info-box-text{color:#93c5fd}
+    #ecs-calc .info-box.blue .font-medium{color:#bfdbfe}
+    #ecs-calc .info-box.gray{background:#374151;border-color:#4b5563}
+    #ecs-calc .info-box.orange{background:#78350f;border-color:#c2410c}
+    #ecs-calc .info-box.orange .info-box-text{color:#fdba74}
+    #ecs-calc .info-box.orange .font-medium{color:#fed7aa}
+    #ecs-calc .info-box.green{background:#14532d;border-color:#15803d}
+    #ecs-calc .info-box.green .info-box-text{color:#bbf7d0}
+    #ecs-calc .info-box.green .font-medium{color:#86efac}
+    #ecs-calc .info-box.red{background:#7f1d1d;border-color:#b91c1c}
+    #ecs-calc .info-box.yellow{background:#78350f;border-color:#eab308}
+    #ecs-calc .cost-card{background:#1f2937;border-color:#374151}
+    #ecs-calc .card{background:#1f2937;border-color:#374151}
+    #ecs-calc .kpi{background:#1f2937;border-color:#374151}
+    #ecs-calc .number-input-container{background:#374151;border-color:#4b5563}
+    #ecs-calc .number-input-btn{color:#d1d5db}
+    #ecs-calc .number-input-field{color:#f3f4f6}
+    #ecs-calc .savings-summary{background:linear-gradient(135deg,#064e3b 0%,#065f46 100%)}
+    #ecs-calc .savings-summary-title{color:#d1fae5}
+    #ecs-calc .savings-metric{background:rgba(31,41,55,.9)}
+    #ecs-calc .savings-metric-label{color:#6ee7b7}
+    #ecs-calc .savings-metric-value{color:#d1fae5}
+    #ecs-calc .savings-summary-footer{border-top-color:rgba(16,185,129,.3)}
+    #ecs-calc .savings-summary-footer p{color:#6ee7b7}
+    #ecs-calc #ecs-totalSavings{color:#d1fae5}
+    #ecs-calc .icon-bg-blue{background:#1e3a8a}
+    #ecs-calc .icon-bg-green{background:#065f46}
+    #ecs-calc .icon-bg-orange{background:#78350f}
   }
