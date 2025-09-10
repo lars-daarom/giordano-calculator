@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crate 
+                Savings Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="ecs-calc">
+  <div class="min-h-screen bg-gradient-to-br py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-white rounded-2xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-gradient-to-r p-6 text-white">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-3xl font-bold mb-1">
+                <span class="text-white">Crate </span>
+                <span class="text-red-500">Savings Calculator</span>
+              </h1>
+              <p class="text-slate-300">Calculate your packaging cost savings with crates versus cardboard box</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-8">
+          <div class="flex items-center justify-center mb-8" id="ecs-stepIndicator"></div>
+          <div class="min-h-400" id="ecs-stepContent"></div>
+
+          <!-- Navigation -->
+          <div class="flex justify-between items-center" style="margin-top:35px;padding-top:1.5rem;border-top:1px solid #e5e7eb">
+            <button id="ecs-prevBtn" class="nav-btn prev" disabled>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+              <span>Previous</span>
+            </button>
+            <button id="ecs-cta" class="cta-btn" style="display:none">
+             <span>Get Your Free Quote</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </button>
+            <button id="ecs-nextBtn" class="nav-btn next">
+              <span>Next Step</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
