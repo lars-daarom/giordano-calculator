@@ -7,7 +7,7 @@
   
   // Step 1 inputs
   let pricePerBox = 0.9;           // Kosten per kartonnen doos
-  let boxesPerShipment = 10;       // Dozen per vracht
+  let boxesPerShipment = 250;       // Dozen per vracht
   let shipmentsPerWeek = 3;        // Aantal leveringen per week
   
   // Fixed values for Step 2
@@ -235,7 +235,7 @@
             <div class="step-inputs-section">
               <div class="grid grid-cols-3 gap-6">
                 ${numberInput('pricePerBox', pricePerBox, 'Price per cardboard box (180 eggs)', '€', 0.01)}
-                ${numberInput('boxesPerShipment', boxesPerShipment, 'Boxes per shipment', '', 1, 1)}
+                ${numberInput('boxesPerShipment', boxesPerShipment, 'Boxes per shipment', '', 50, 50)}
                 ${numberInput('shipmentsPerWeek', shipmentsPerWeek, 'Shipments per week', '', 1, 1)}
               </div>
             </div>
