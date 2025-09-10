@@ -146,6 +146,7 @@
   #ecs-calc .savings-row:last-child{margin-bottom:0}
   #ecs-calc .savings-label{font-size:1rem;color:#15803d;font-weight:600}
   #ecs-calc .savings-value{font-size:1.5rem;font-weight:800;color:#14532d}
+  #ecs-calc .savings-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 
   /* ====================================================================
      STEP 2 — CARD COMPONENT
