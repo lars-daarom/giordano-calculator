@@ -245,7 +245,7 @@
         html = `
           <div class="${wrapClass}">
             <div class="step-header-section">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4" style="background:#dbeafe">${icon('Package','w-8 h-8 text-blue-600')}</div>
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-blue">${icon('Package','w-8 h-8 text-blue-600')}</div>
               <h2 class="text-2xl font-bold mb-2">Step 1: Current Packaging Costs</h2>
               <p class="text-gray-600">Enter your current packaging costs and delivery frequency</p>
             </div>
@@ -279,7 +279,7 @@
         html = `
           <div class="${wrapClass}">
             <div class="step-header-section">
-              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style="background:#dcfce7">${icon('Recycle','w-8 h-8 text-blue-600')}</div>
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-green">${icon('Recycle','w-8 h-8 text-blue-600')}</div>
               <h2 class="text-2xl font-bold mb-2">Step 2: Crate Solution</h2>
               <p class="text-gray-600">Sustainable crates that last 10 years and eliminate the need for cardboard trays</p>
             </div>
@@ -328,7 +328,7 @@
         html = `
           <div class="${wrapClass}">
             <div class="step-header-section">
-              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style="background:#ffedd5">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-orange">
                 ${icon('Calculator','w-8 h-8 text-blue-600')}
               </div>
               <h2 class="text-2xl font-bold mb-2">Step 3: Cost Comparison & Savings</h2>
@@ -338,28 +338,28 @@
             <div class="step-info-section">
               
               <!-- Total Savings Summary -->
-              <div style="background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);border:0px;border-radius:1rem;padding:1.5rem;position:relative;overflow:hidden">
-                <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem">
+              <div class="savings-summary">
+                <div class="savings-summary-header">
                   ${icon('DollarSign','w-6 h-6')}
-                  <span style="font-size:1.25rem;font-weight:800;color:#14532d">Your Total Savings with crates</span>
+                  <span class="savings-summary-title">Your Total Savings with crates</span>
                 </div>
                 <div class="savings-metrics">
-                  <div style="text-align:center;padding:1rem;background:rgba(255,255,255,.9);border-radius:.75rem">
-                    <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#15803d;margin-bottom:.5rem;font-weight:600">Save per Week</p>
-                    <p style="font-size:1.75rem;font-weight:900;color:#14532d;line-height:1">€${fmt(calculations.savingsPerWeek)}</p>
+                  <div class="savings-metric">
+                    <p class="savings-metric-label">Save per Week</p>
+                    <p class="savings-metric-value">€${fmt(calculations.savingsPerWeek)}</p>
                   </div>
-                  <div style="text-align:center;padding:1rem;background:rgba(255,255,255,.9);border-radius:.75rem">
-                    <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#15803d;margin-bottom:.5rem;font-weight:600">Save per Year</p>
-                    <p style="font-size:1.75rem;font-weight:900;color:#14532d;line-height:1">€${fmt(calculations.savingsPerYear)}</p>
+                  <div class="savings-metric">
+                    <p class="savings-metric-label">Save per Year</p>
+                    <p class="savings-metric-value">€${fmt(calculations.savingsPerYear)}</p>
                   </div>
-                  <div style="text-align:center;padding:1rem;background:rgba(255,255,255,.9);border-radius:.75rem">
-                    <p style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#15803d;margin-bottom:.5rem;font-weight:600">Save per Month</p>
-                    <p style="font-size:1.75rem;font-weight:900;color:#14532d;line-height:1">€${fmt(calculations.monthlySavings)}</p>
+                  <div class="savings-metric">
+                    <p class="savings-metric-label">Save per Month</p>
+                    <p class="savings-metric-value">€${fmt(calculations.monthlySavings)}</p>
                   </div>
                 </div>
-                <div style="text-align:center;margin-top:1.25rem;padding-top:1.25rem;border-top:2px solid rgba(134,239,172,.3)">
-                  <p style="font-size:.875rem;color:#15803d;margin-bottom:.5rem">Total savings over 10 years</p>
-                  <p id="ecs-totalSavings" style="font-size:2.5rem;font-weight:900;color:#14532d;line-height:1">€0.00</p>
+                <div class="savings-summary-footer">
+                  <p>Total savings over 10 years</p>
+                  <p id="ecs-totalSavings">€0.00</p>
                 </div>
               </div>
             </div>
