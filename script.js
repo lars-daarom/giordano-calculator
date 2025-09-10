@@ -7,6 +7,7 @@
   
   // Step 1 inputs
   let pricePerBox = 0.9;           // Kosten per kartonnen doos
+  let pricePerTray = 0.07;         // Kosten per kartonnen tray
   let boxesPerShipment = 250;       // Dozen per vracht
   let shipmentsPerWeek = 3;        // Aantal leveringen per week
   
@@ -27,7 +28,8 @@
 
   function calc(){
     // Huidige kosten berekeningen
-    const weeklyCostCurrent = pricePerBox * boxesPerShipment * shipmentsPerWeek;
+    const perBoxCost = pricePerBox + (pricePerTray * 7); // 7 trays per box
+    const weeklyCostCurrent = perBoxCost * boxesPerShipment * shipmentsPerWeek;
     const yearlyCostCurrent = weeklyCostCurrent * 52;
     const tenYearCostCurrent = yearlyCostCurrent * 10;
     
@@ -52,6 +54,7 @@
     calculations = {
       // Current costs
       boxesPerWeek: boxesPerShipment * shipmentsPerWeek,
+      perBoxCost,
       weeklyCostCurrent,
       yearlyCostCurrent,
       tenYearCostCurrent,
@@ -159,6 +162,7 @@
     const v = parseFloat(val)||0;
     switch(id){
       case 'pricePerBox': pricePerBox = v; break;
+      case 'pricePerTray': pricePerTray = v; break;
       case 'boxesPerShipment': boxesPerShipment = Math.round(v); break;
       case 'shipmentsPerWeek': shipmentsPerWeek = Math.round(v); break;
     }
@@ -233,8 +237,9 @@
               <p class="text-gray-600">Enter your current packaging costs and delivery frequency</p>
             </div>
             <div class="step-inputs-section">
-              <div class="grid grid-cols-3 gap-6">
+              <div class="grid grid-cols-2 gap-6">
                 ${numberInput('pricePerBox', pricePerBox, 'Price per cardboard box (180 eggs)', '€', 0.01)}
+                ${numberInput('pricePerTray', pricePerTray, 'Price per cardboard tray', '€', 0.01)}
                 ${numberInput('boxesPerShipment', boxesPerShipment, 'Boxes per shipment', '', 50, 50)}
                 ${numberInput('shipmentsPerWeek', shipmentsPerWeek, 'Shipments per week', '', 1, 1)}
               </div>
@@ -249,7 +254,7 @@
                   <div class="cost-display-left">${icon('Wallet','w-5 h-5 text-blue-600')}<span class="font-medium">Weekly packaging cost</span></div>
                   <span class="cost-display-amount">€${fmt(calculations.weeklyCostCurrent)}</span>
                 </div>
-                <p class="cost-breakdown">= ${calculations.boxesPerWeek} boxes × €${fmt(pricePerBox)} per box</p>
+                <p class="cost-breakdown">= ${calculations.boxesPerWeek} boxes × ( €${fmt(pricePerBox)} + 7 × €${fmt(pricePerTray)} )</p>
               </div>
             </div>
           </div>
@@ -263,7 +268,7 @@
             <div class="step-header-section">
               <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style="background:#dcfce7">${icon('Recycle','w-8 h-8 text-blue-600')}</div>
               <h2 class="text-2xl font-bold mb-2">Step 2: Crate Solution</h2>
-              <p class="text-gray-600">Sustainable crates that last 10 years</p>
+              <p class="text-gray-600">Sustainable crates that last 10 years and eliminate the need for cardboard trays</p>
             </div>
 
             <div class="step-info-section">
