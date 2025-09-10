@@ -387,7 +387,7 @@
     #ecs-calc .nav-btn{background:#374151;border-color:#4b5563;color:#f3f4f6}
     #ecs-calc .nav-btn:hover:not(:disabled){border-color:#4b5563;color:#fff}
     #ecs-calc .nav-btn.prev:hover:not(:disabled){color:#f3f4f6}
-    #ecs-calc .nav-container{border-top-color:#4b5563}
+    #ecs-calc .nav-container{border-top-color:#4b5563;background:#1f2937}
     #ecs-calc .bg-blue-600{background:#2563eb}
     #ecs-calc .bg-gray-300{background:#4b5563}
     #ecs-calc .border-gray-300{border-color:#4b5563}
