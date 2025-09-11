@@ -2,11 +2,519 @@
   const root = document.getElementById('ecs-calc');
   const $ = sel => root.querySelector(sel);
 
+  const pageLang = (document.documentElement.lang || 'en').split('-')[0];
+  const translations = {
+    en: {
+      documentTitle: "Crate Savings Calculator",
+      titlePart1: "Crate",
+      titlePart2: "Savings Calculator",
+      tagline: "Calculate your packaging savings with durable plastic crates versus cardboard boxes",
+      previous: "Previous",
+      nextStep: "Next Step",
+      cta: "Get Your Free Quote",
+      alertMessage: "Contact us through our website for your free quote!",
+      stepIndicator1: "Your Current Packaging Costs",
+      stepIndicator2: "ECS Crate Solution",
+      stepIndicator3: "Cost Comparison",
+      step1Header: "Step 1: Current Packaging Costs",
+      step1Desc: "Enter your current packaging costs and delivery frequency",
+      pricePerBoxLabel: "Your price per cardboard box (180 eggs)",
+      pricePerTrayLabel: "Your price per cardboard tray",
+      boxesPerDeliveryLabel: "Boxes per delivery",
+      deliveriesPerWeekLabel: "Deliveries per week",
+      weeklyVolumeTitle: "Weekly Volume",
+      weeklyVolumeText: "You ship {boxesPerWeek} boxes per week ({boxesPerShipment} boxes × {shipmentsPerWeek} shipments)",
+      weeklyCostTitle: "Weekly packaging cost",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "boxes",
+      unitCrates: "crates",
+      unitYears: "years",
+      step2Header: "Step 2: Durable Plastic Crate Solution",
+      step2Desc: "Sustainable crates that last 10 years and eliminate the need for cardboard boxes and paper trays",
+      whyCratesTitle: "Why 3× crates needed?",
+      whyCratesText: "You need 3 sets of crates in rotation: 1 set for cleaning, 1 set in return transport, and 1 set for current shipment. This ensures continuous operation. In this new setup, we assume plastic egg trays are already being used.",
+      crateRequirementsTitle: "Crate Requirements",
+      cratesPerShipmentLabel: "Crates per shipment",
+      rotationFactorLabel: "Rotation factor",
+      totalCratesNeededLabel: "Total crates needed",
+      rotationHelp: "3 sets needed for rotation cycle",
+      fixedPricingTitle: "Fixed Pricing",
+      pricePerCrateLabel: "Price per crate",
+      lifespanLabel: "Lifespan",
+      totalInvestmentLabel: "Total investment",
+      oneTimeInvestmentHelp: "One-time investment",
+      annualCostTitle: "Annual Cost",
+      investmentLabel: "Investment",
+      dividedByLabel: "Divided by",
+      costPerYearLabel: "Cost per year",
+      amortizedHelp: "Amortized over lifespan",
+      step3Header: "Step 3: Cost Comparison & Savings",
+      step3Desc: "See how crates save you money compared to cardboard boxes",
+      totalSavingsTitle: "Your Total Savings with crates",
+      totalSavingsTenYear: "Total savings over 10 years",
+      savePerWeek: "Save per Week",
+      savePerMonth: "Save per Month",
+      savePerYear: "Save per Year",
+      decrease: "Decrease {label}",
+      increase: "Increase {label}"
+    },
+    nl: {
+      documentTitle: "Besparingscalculator voor kratten",
+      titlePart1: "Kratten",
+      titlePart2: "Besparingscalculator",
+      tagline: "Bereken je verpakkingsbesparing met duurzame kunststof kratten in plaats van kartonnen dozen",
+      previous: "Vorige",
+      nextStep: "Volgende stap",
+      cta: "Vraag een gratis offerte aan",
+      alertMessage: "Neem contact met ons op via onze website voor jouw gratis offerte!",
+      stepIndicator1: "Je huidige verpakkingskosten",
+      stepIndicator2: "ECS-krattenoplossing",
+      stepIndicator3: "Kostenvergelijking",
+      step1Header: "Stap 1: Huidige verpakkingskosten",
+      step1Desc: "Voer je huidige verpakkingskosten en leveringsfrequentie in",
+      pricePerBoxLabel: "Jouw prijs per kartonnen doos (180 eieren)",
+      pricePerTrayLabel: "Jouw prijs per kartonnen tray",
+      boxesPerDeliveryLabel: "Dozen per levering",
+      deliveriesPerWeekLabel: "Leveringen per week",
+      weeklyVolumeTitle: "Wekelijks volume",
+      weeklyVolumeText: "Je verzendt {boxesPerWeek} dozen per week ({boxesPerShipment} dozen × {shipmentsPerWeek} leveringen)",
+      weeklyCostTitle: "Wekelijkse verpakkingskosten",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "dozen",
+      unitCrates: "kratten",
+      unitYears: "jaar",
+      step2Header: "Stap 2: Duurzame kunststof krattenoplossing",
+      step2Desc: "Duurzame kratten die 10 jaar meegaan en kartonnen dozen en papieren trays overbodig maken",
+      whyCratesTitle: "Waarom 3× kratten nodig?",
+      whyCratesText: "Je hebt 3 sets kratten in rotatie nodig: 1 set voor reiniging, 1 set in retourtransport en 1 set voor de huidige zending. Dit zorgt voor een continue werking. In deze nieuwe opzet gaan we ervan uit dat plastic eiertrays al worden gebruikt.",
+      crateRequirementsTitle: "Vereisten kratten",
+      cratesPerShipmentLabel: "Kratten per zending",
+      rotationFactorLabel: "Rotatiefactor",
+      totalCratesNeededLabel: "Totaal benodigde kratten",
+      rotationHelp: "3 sets nodig voor rotatiecyclus",
+      fixedPricingTitle: "Vaste prijsstelling",
+      pricePerCrateLabel: "Prijs per krat",
+      lifespanLabel: "Levensduur",
+      totalInvestmentLabel: "Totale investering",
+      oneTimeInvestmentHelp: "Eenmalige investering",
+      annualCostTitle: "Jaarlijkse kosten",
+      investmentLabel: "Investering",
+      dividedByLabel: "Gedeeld door",
+      costPerYearLabel: "Kosten per jaar",
+      amortizedHelp: "Gespreid over levensduur",
+      step3Header: "Stap 3: Kostenvergelijking & besparingen",
+      step3Desc: "Zie hoe kratten je geld besparen vergeleken met kartonnen dozen",
+      totalSavingsTitle: "Je totale besparing met kratten",
+      totalSavingsTenYear: "Totale besparing over 10 jaar",
+      savePerWeek: "Besparing per week",
+      savePerMonth: "Besparing per maand",
+      savePerYear: "Besparing per jaar",
+      decrease: "Verlaag {label}",
+      increase: "Verhoog {label}"
+    },
+    fr: {
+      documentTitle: "Calculateur d'économies de caisses",
+      titlePart1: "Calculateur",
+      titlePart2: "d'économies de caisses",
+      tagline: "Calculez vos économies d'emballage avec des caisses en plastique durables plutôt que des boîtes en carton",
+      previous: "Précédent",
+      nextStep: "Étape suivante",
+      cta: "Obtenez votre devis gratuit",
+      alertMessage: "Contactez-nous via notre site web pour obtenir votre devis gratuit !",
+      stepIndicator1: "Vos coûts d'emballage actuels",
+      stepIndicator2: "Solution de caisse ECS",
+      stepIndicator3: "Comparaison des coûts",
+      step1Header: "Étape 1 : Coûts d'emballage actuels",
+      step1Desc: "Entrez vos coûts d'emballage actuels et la fréquence de livraison",
+      pricePerBoxLabel: "Votre prix par boîte en carton (180 œufs)",
+      pricePerTrayLabel: "Votre prix par plateau en carton",
+      boxesPerDeliveryLabel: "Boîtes par livraison",
+      deliveriesPerWeekLabel: "Livraisons par semaine",
+      weeklyVolumeTitle: "Volume hebdomadaire",
+      weeklyVolumeText: "Vous expédiez {boxesPerWeek} boîtes par semaine ({boxesPerShipment} boîtes × {shipmentsPerWeek} livraisons)",
+      weeklyCostTitle: "Coût d'emballage hebdomadaire",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "boîtes",
+      unitCrates: "caisses",
+      unitYears: "ans",
+      step2Header: "Étape 2 : Solution de caisse en plastique durable",
+      step2Desc: "Des caisses durables qui durent 10 ans et éliminent le besoin de boîtes en carton et de plateaux en papier",
+      whyCratesTitle: "Pourquoi 3× caisses nécessaires ?",
+      whyCratesText: "Vous avez besoin de 3 jeux de caisses en rotation : 1 jeu pour le nettoyage, 1 jeu en transport de retour et 1 jeu pour l'expédition en cours. Cela garantit un fonctionnement continu. Dans cette nouvelle configuration, nous supposons que des plateaux à œufs en plastique sont déjà utilisés.",
+      crateRequirementsTitle: "Exigences en caisses",
+      cratesPerShipmentLabel: "Caisses par expédition",
+      rotationFactorLabel: "Facteur de rotation",
+      totalCratesNeededLabel: "Nombre total de caisses nécessaires",
+      rotationHelp: "3 jeux nécessaires pour le cycle de rotation",
+      fixedPricingTitle: "Tarification fixe",
+      pricePerCrateLabel: "Prix par caisse",
+      lifespanLabel: "Durée de vie",
+      totalInvestmentLabel: "Investissement total",
+      oneTimeInvestmentHelp: "Investissement unique",
+      annualCostTitle: "Coût annuel",
+      investmentLabel: "Investissement",
+      dividedByLabel: "Divisé par",
+      costPerYearLabel: "Coût par an",
+      amortizedHelp: "Amorti sur la durée de vie",
+      step3Header: "Étape 3 : Comparaison des coûts et économies",
+      step3Desc: "Découvrez comment les caisses vous font économiser de l'argent par rapport aux boîtes en carton",
+      totalSavingsTitle: "Vos économies totales avec les caisses",
+      totalSavingsTenYear: "Économies totales sur 10 ans",
+      savePerWeek: "Économie par semaine",
+      savePerMonth: "Économie par mois",
+      savePerYear: "Économie par an",
+      decrease: "Diminuer {label}",
+      increase: "Augmenter {label}"
+    },
+    es: {
+      documentTitle: "Calculadora de Ahorro de Cajas",
+      titlePart1: "Calculadora de",
+      titlePart2: "Ahorro de Cajas",
+      tagline: "Calcula tus ahorros de embalaje con cajas de plástico duraderas frente a cajas de cartón",
+      previous: "Anterior",
+      nextStep: "Siguiente paso",
+      cta: "Obtén tu cotización gratis",
+      alertMessage: "¡Contáctanos a través de nuestro sitio web para tu cotización gratis!",
+      stepIndicator1: "Tus costos actuales de embalaje",
+      stepIndicator2: "Solución de cajas ECS",
+      stepIndicator3: "Comparación de costos",
+      step1Header: "Paso 1: Costos actuales de embalaje",
+      step1Desc: "Ingresa tus costos actuales de embalaje y frecuencia de entrega",
+      pricePerBoxLabel: "Tu precio por caja de cartón (180 huevos)",
+      pricePerTrayLabel: "Tu precio por bandeja de cartón",
+      boxesPerDeliveryLabel: "Cajas por entrega",
+      deliveriesPerWeekLabel: "Entregas por semana",
+      weeklyVolumeTitle: "Volumen semanal",
+      weeklyVolumeText: "Envías {boxesPerWeek} cajas por semana ({boxesPerShipment} cajas × {shipmentsPerWeek} entregas)",
+      weeklyCostTitle: "Costo de embalaje semanal",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "cajas",
+      unitCrates: "cajas",
+      unitYears: "años",
+      step2Header: "Paso 2: Solución de cajas plásticas duraderas",
+      step2Desc: "Cajas sostenibles que duran 10 años y eliminan la necesidad de cajas de cartón y bandejas de papel",
+      whyCratesTitle: "¿Por qué se necesitan 3× cajas?",
+      whyCratesText: "Necesitas 3 juegos de cajas en rotación: 1 juego para limpieza, 1 juego en transporte de retorno y 1 juego para el envío actual. Esto asegura operación continua. En esta nueva configuración, asumimos que ya se utilizan bandejas de plástico para huevos.",
+      crateRequirementsTitle: "Requisitos de cajas",
+      cratesPerShipmentLabel: "Cajas por envío",
+      rotationFactorLabel: "Factor de rotación",
+      totalCratesNeededLabel: "Total de cajas necesarias",
+      rotationHelp: "Se necesitan 3 juegos para el ciclo de rotación",
+      fixedPricingTitle: "Precio fijo",
+      pricePerCrateLabel: "Precio por caja",
+      lifespanLabel: "Vida útil",
+      totalInvestmentLabel: "Inversión total",
+      oneTimeInvestmentHelp: "Inversión única",
+      annualCostTitle: "Costo anual",
+      investmentLabel: "Inversión",
+      dividedByLabel: "Dividido entre",
+      costPerYearLabel: "Costo por año",
+      amortizedHelp: "Amortizado durante la vida útil",
+      step3Header: "Paso 3: Comparación de costos y ahorros",
+      step3Desc: "Ve cómo las cajas te ahorran dinero frente a las cajas de cartón",
+      totalSavingsTitle: "Tus ahorros totales con cajas",
+      totalSavingsTenYear: "Ahorro total durante 10 años",
+      savePerWeek: "Ahorro por semana",
+      savePerMonth: "Ahorro por mes",
+      savePerYear: "Ahorro por año",
+      decrease: "Disminuir {label}",
+      increase: "Aumentar {label}"
+    },
+    it: {
+      documentTitle: "Calcolatore di risparmio delle casse",
+      titlePart1: "Calcolatore",
+      titlePart2: "di risparmio delle casse",
+      tagline: "Calcola il risparmio di imballaggio con casse di plastica durevoli invece che con scatole di cartone",
+      previous: "Precedente",
+      nextStep: "Prossimo passaggio",
+      cta: "Ottieni un preventivo gratuito",
+      alertMessage: "Contattaci tramite il nostro sito web per il tuo preventivo gratuito!",
+      stepIndicator1: "I tuoi costi di imballaggio attuali",
+      stepIndicator2: "Soluzione di casse ECS",
+      stepIndicator3: "Confronto dei costi",
+      step1Header: "Passo 1: Costi di imballaggio attuali",
+      step1Desc: "Inserisci i tuoi costi di imballaggio attuali e la frequenza di consegna",
+      pricePerBoxLabel: "Il tuo prezzo per scatola di cartone (180 uova)",
+      pricePerTrayLabel: "Il tuo prezzo per vassoio di cartone",
+      boxesPerDeliveryLabel: "Scatole per consegna",
+      deliveriesPerWeekLabel: "Consegne per settimana",
+      weeklyVolumeTitle: "Volume settimanale",
+      weeklyVolumeText: "Spedisci {boxesPerWeek} scatole a settimana ({boxesPerShipment} scatole × {shipmentsPerWeek} consegne)",
+      weeklyCostTitle: "Costo di imballaggio settimanale",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "scatole",
+      unitCrates: "casse",
+      unitYears: "anni",
+      step2Header: "Passo 2: Soluzione di casse di plastica durevoli",
+      step2Desc: "Casse sostenibili che durano 10 anni ed eliminano la necessità di scatole di cartone e vassoi di carta",
+      whyCratesTitle: "Perché sono necessarie 3× casse?",
+      whyCratesText: "Hai bisogno di 3 set di casse in rotazione: 1 set per la pulizia, 1 set nel trasporto di ritorno e 1 set per la spedizione corrente. Ciò garantisce un funzionamento continuo. In questa nuova configurazione, si presume che vengano già utilizzati vassoi di plastica per uova.",
+      crateRequirementsTitle: "Requisiti delle casse",
+      cratesPerShipmentLabel: "Casse per spedizione",
+      rotationFactorLabel: "Fattore di rotazione",
+      totalCratesNeededLabel: "Casse totali necessarie",
+      rotationHelp: "3 set necessari per il ciclo di rotazione",
+      fixedPricingTitle: "Prezzo fisso",
+      pricePerCrateLabel: "Prezzo per cassa",
+      lifespanLabel: "Durata",
+      totalInvestmentLabel: "Investimento totale",
+      oneTimeInvestmentHelp: "Investimento una tantum",
+      annualCostTitle: "Costo annuale",
+      investmentLabel: "Investimento",
+      dividedByLabel: "Diviso per",
+      costPerYearLabel: "Costo per anno",
+      amortizedHelp: "Ammortizzato sulla durata",
+      step3Header: "Passo 3: Confronto dei costi e risparmi",
+      step3Desc: "Vedi come le casse ti fanno risparmiare rispetto alle scatole di cartone",
+      totalSavingsTitle: "Il tuo risparmio totale con le casse",
+      totalSavingsTenYear: "Risparmio totale in 10 anni",
+      savePerWeek: "Risparmio per settimana",
+      savePerMonth: "Risparmio per mese",
+      savePerYear: "Risparmio per anno",
+      decrease: "Riduci {label}",
+      increase: "Aumenta {label}"
+    },
+    pt: {
+      documentTitle: "Calculadora de economia de caixas",
+      titlePart1: "Calculadora",
+      titlePart2: "de economia de caixas",
+      tagline: "Calcule sua economia de embalagem com caixas plásticas duráveis em vez de caixas de papelão",
+      previous: "Anterior",
+      nextStep: "Próxima etapa",
+      cta: "Obtenha sua cotação gratuita",
+      alertMessage: "Entre em contato conosco através do nosso site para sua cotação gratuita!",
+      stepIndicator1: "Seus custos atuais de embalagem",
+      stepIndicator2: "Solução de caixas ECS",
+      stepIndicator3: "Comparação de custos",
+      step1Header: "Etapa 1: Custos atuais de embalagem",
+      step1Desc: "Insira seus custos atuais de embalagem e frequência de entrega",
+      pricePerBoxLabel: "Seu preço por caixa de papelão (180 ovos)",
+      pricePerTrayLabel: "Seu preço por bandeja de papelão",
+      boxesPerDeliveryLabel: "Caixas por entrega",
+      deliveriesPerWeekLabel: "Entregas por semana",
+      weeklyVolumeTitle: "Volume semanal",
+      weeklyVolumeText: "Você envia {boxesPerWeek} caixas por semana ({boxesPerShipment} caixas × {shipmentsPerWeek} entregas)",
+      weeklyCostTitle: "Custo de embalagem semanal",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "caixas",
+      unitCrates: "caixas",
+      unitYears: "anos",
+      step2Header: "Etapa 2: Solução de caixas plásticas duráveis",
+      step2Desc: "Caixas sustentáveis que duram 10 anos e eliminam a necessidade de caixas de papelão e bandejas de papel",
+      whyCratesTitle: "Por que são necessárias 3× caixas?",
+      whyCratesText: "Você precisa de 3 conjuntos de caixas em rotação: 1 conjunto para limpeza, 1 conjunto no transporte de retorno e 1 conjunto para o envio atual. Isso garante operação contínua. Nesta nova configuração, assumimos que bandejas de ovos de plástico já estão sendo usadas.",
+      crateRequirementsTitle: "Requisitos de caixas",
+      cratesPerShipmentLabel: "Caixas por envio",
+      rotationFactorLabel: "Fator de rotação",
+      totalCratesNeededLabel: "Total de caixas necessárias",
+      rotationHelp: "3 conjuntos necessários para ciclo de rotação",
+      fixedPricingTitle: "Preço fixo",
+      pricePerCrateLabel: "Preço por caixa",
+      lifespanLabel: "Vida útil",
+      totalInvestmentLabel: "Investimento total",
+      oneTimeInvestmentHelp: "Investimento único",
+      annualCostTitle: "Custo anual",
+      investmentLabel: "Investimento",
+      dividedByLabel: "Dividido por",
+      costPerYearLabel: "Custo por ano",
+      amortizedHelp: "Amortizado ao longo da vida útil",
+      step3Header: "Etapa 3: Comparação de custos e economia",
+      step3Desc: "Veja como as caixas economizam dinheiro em comparação com as caixas de papelão",
+      totalSavingsTitle: "Sua economia total com caixas",
+      totalSavingsTenYear: "Economia total em 10 anos",
+      savePerWeek: "Economia por semana",
+      savePerMonth: "Economia por mês",
+      savePerYear: "Economia por ano",
+      decrease: "Diminuir {label}",
+      increase: "Aumentar {label}"
+    },
+    ru: {
+      documentTitle: "Калькулятор экономии на ящиках",
+      titlePart1: "Калькулятор",
+      titlePart2: "экономии на ящиках",
+      tagline: "Рассчитайте экономию на упаковке с прочными пластиковыми ящиками вместо картонных коробок",
+      previous: "Назад",
+      nextStep: "Следующий шаг",
+      cta: "Получите бесплатное предложение",
+      alertMessage: "Свяжитесь с нами через наш сайт, чтобы получить бесплатное предложение!",
+      stepIndicator1: "Текущие расходы на упаковку",
+      stepIndicator2: "Решение с ящиками ECS",
+      stepIndicator3: "Сравнение затрат",
+      step1Header: "Шаг 1: Текущие расходы на упаковку",
+      step1Desc: "Введите текущие расходы на упаковку и частоту поставок",
+      pricePerBoxLabel: "Ваша цена за картонную коробку (180 яиц)",
+      pricePerTrayLabel: "Ваша цена за картонный лоток",
+      boxesPerDeliveryLabel: "Коробок за поставку",
+      deliveriesPerWeekLabel: "Поставок в неделю",
+      weeklyVolumeTitle: "Недельный объем",
+      weeklyVolumeText: "Вы отправляете {boxesPerWeek} коробок в неделю ({boxesPerShipment} коробок × {shipmentsPerWeek} поставок)",
+      weeklyCostTitle: "Недельные расходы на упаковку",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "коробок",
+      unitCrates: "ящиков",
+      unitYears: "лет",
+      step2Header: "Шаг 2: Решение с прочными пластиковыми ящиками",
+      step2Desc: "Экологичные ящики, которые служат 10 лет и устраняют необходимость в картонных коробках и бумажных лотках",
+      whyCratesTitle: "Почему нужны 3× ящика?",
+      whyCratesText: "Необходимо 3 комплекта ящиков в ротации: 1 комплект для очистки, 1 комплект в обратной перевозке и 1 комплект для текущей отправки. Это обеспечивает непрерывную работу. В этой новой системе предполагается, что пластиковые лотки для яиц уже используются.",
+      crateRequirementsTitle: "Требования к ящикам",
+      cratesPerShipmentLabel: "Ящиков на отправку",
+      rotationFactorLabel: "Коэффициент ротации",
+      totalCratesNeededLabel: "Всего необходимых ящиков",
+      rotationHelp: "Требуется 3 комплекта для цикла ротации",
+      fixedPricingTitle: "Фиксированная цена",
+      pricePerCrateLabel: "Цена за ящик",
+      lifespanLabel: "Срок службы",
+      totalInvestmentLabel: "Общие инвестиции",
+      oneTimeInvestmentHelp: "Единовременное вложение",
+      annualCostTitle: "Годовые расходы",
+      investmentLabel: "Инвестиции",
+      dividedByLabel: "Делится на",
+      costPerYearLabel: "Стоимость в год",
+      amortizedHelp: "Амортизируется за срок службы",
+      step3Header: "Шаг 3: Сравнение затрат и экономия",
+      step3Desc: "Посмотрите, как ящики экономят деньги по сравнению с картонными коробками",
+      totalSavingsTitle: "Ваша общая экономия с ящиками",
+      totalSavingsTenYear: "Общая экономия за 10 лет",
+      savePerWeek: "Экономия в неделю",
+      savePerMonth: "Экономия в месяц",
+      savePerYear: "Экономия в год",
+      decrease: "Уменьшить {label}",
+      increase: "Увеличить {label}"
+    },
+    zh: {
+      documentTitle: "塑料周转箱节省计算器",
+      titlePart1: "塑料周转箱",
+      titlePart2: "节省计算器",
+      tagline: "使用耐用塑料周转箱替代纸箱，计算您的包装节省",
+      previous: "上一页",
+      nextStep: "下一步",
+      cta: "获取免费报价",
+      alertMessage: "通过我们的网站联系我们获取免费报价！",
+      stepIndicator1: "当前包装成本",
+      stepIndicator2: "ECS周转箱方案",
+      stepIndicator3: "成本比较",
+      step1Header: "步骤1：当前包装成本",
+      step1Desc: "输入您当前的包装成本和交付频率",
+      pricePerBoxLabel: "每个纸箱价格（180枚鸡蛋）",
+      pricePerTrayLabel: "每个纸托价格",
+      boxesPerDeliveryLabel: "每次交付的箱数",
+      deliveriesPerWeekLabel: "每周交付次数",
+      weeklyVolumeTitle: "每周量",
+      weeklyVolumeText: "您每周运送{boxesPerWeek}箱（{boxesPerShipment}箱 × {shipmentsPerWeek}次交付）",
+      weeklyCostTitle: "每周包装成本",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "箱",
+      unitCrates: "箱",
+      unitYears: "年",
+      step2Header: "步骤2：耐用塑料周转箱方案",
+      step2Desc: "耐用的周转箱可使用10年，避免使用纸箱和纸托",
+      whyCratesTitle: "为何需要3×周转箱？",
+      whyCratesText: "需要3套周转箱轮换：1套用于清洗，1套在返程运输中，1套用于当前装运。这样可确保持续运转。在此新方案中，我们假设已经使用塑料蛋托。",
+      crateRequirementsTitle: "周转箱需求",
+      cratesPerShipmentLabel: "每次装运的周转箱",
+      rotationFactorLabel: "轮换系数",
+      totalCratesNeededLabel: "所需周转箱总数",
+      rotationHelp: "轮换周期需要3套",
+      fixedPricingTitle: "固定价格",
+      pricePerCrateLabel: "每个周转箱价格",
+      lifespanLabel: "使用寿命",
+      totalInvestmentLabel: "总投资",
+      oneTimeInvestmentHelp: "一次性投资",
+      annualCostTitle: "年度成本",
+      investmentLabel: "投资",
+      dividedByLabel: "除以",
+      costPerYearLabel: "每年成本",
+      amortizedHelp: "按使用寿命摊销",
+      step3Header: "步骤3：成本比较与节省",
+      step3Desc: "看看周转箱如何比纸箱为您节省成本",
+      totalSavingsTitle: "使用周转箱的总节省",
+      totalSavingsTenYear: "10年总节省",
+      savePerWeek: "每周节省",
+      savePerMonth: "每月节省",
+      savePerYear: "每年节省",
+      decrease: "减少{label}",
+      increase: "增加{label}"
+    },
+    ar: {
+      documentTitle: "حاسبة توفير الصناديق",
+      titlePart1: "حاسبة",
+      titlePart2: "توفير الصناديق",
+      tagline: "احسب وفورات التعبئة باستخدام صناديق بلاستيكية متينة بدلاً من الصناديق الكرتونية",
+      previous: "السابق",
+      nextStep: "الخطوة التالية",
+      cta: "احصل على عرض مجاني",
+      alertMessage: "تواصل معنا عبر موقعنا للحصول على عرضك المجاني!",
+      stepIndicator1: "تكاليف التعبئة الحالية",
+      stepIndicator2: "حل صناديق ECS",
+      stepIndicator3: "مقارنة التكاليف",
+      step1Header: "الخطوة 1: تكاليف التعبئة الحالية",
+      step1Desc: "أدخل تكاليف التعبئة الحالية وتكرار التسليم",
+      pricePerBoxLabel: "سعر الصندوق الكرتوني (180 بيضة)",
+      pricePerTrayLabel: "سعر الصينية الكرتونية",
+      boxesPerDeliveryLabel: "عدد الصناديق لكل تسليم",
+      deliveriesPerWeekLabel: "عمليات التسليم في الأسبوع",
+      weeklyVolumeTitle: "الحجم الأسبوعي",
+      weeklyVolumeText: "ترسل {boxesPerWeek} صندوقًا في الأسبوع ({boxesPerShipment} صندوقًا × {shipmentsPerWeek} عملية تسليم)",
+      weeklyCostTitle: "تكلفة التعبئة الأسبوعية",
+      costBreakdown: "= {boxesPerWeek} {unitBoxes} × ( {currency}{pricePerBox} + 7 × {currency}{pricePerTray} )",
+      unitBoxes: "صناديق",
+      unitCrates: "صناديق",
+      unitYears: "سنوات",
+      step2Header: "الخطوة 2: حل الصناديق البلاستيكية المتينة",
+      step2Desc: "صناديق مستدامة تدوم 10 سنوات وتلغي الحاجة إلى الصناديق الكرتونية والصواني الورقية",
+      whyCratesTitle: "لماذا نحتاج 3× صناديق؟",
+      whyCratesText: "تحتاج إلى 3 مجموعات من الصناديق في دورة: مجموعة للتنظيف، ومجموعة في النقل العكسي، ومجموعة للشحنة الحالية. هذا يضمن التشغيل المستمر. في هذا النظام الجديد نفترض استخدام صواني بلاستيكية للبيض بالفعل.",
+      crateRequirementsTitle: "متطلبات الصناديق",
+      cratesPerShipmentLabel: "صناديق لكل شحنة",
+      rotationFactorLabel: "عامل الدوران",
+      totalCratesNeededLabel: "إجمالي الصناديق المطلوبة",
+      rotationHelp: "مطلوب 3 مجموعات لدورة الدوران",
+      fixedPricingTitle: "تسعير ثابت",
+      pricePerCrateLabel: "سعر الصندوق",
+      lifespanLabel: "مدة الخدمة",
+      totalInvestmentLabel: "الاستثمار الكلي",
+      oneTimeInvestmentHelp: "استثمار لمرة واحدة",
+      annualCostTitle: "التكلفة السنوية",
+      investmentLabel: "الاستثمار",
+      dividedByLabel: "مقسوم على",
+      costPerYearLabel: "التكلفة السنوية",
+      amortizedHelp: "مستهلكة على مدة الخدمة",
+      step3Header: "الخطوة 3: مقارنة التكاليف والتوفير",
+      step3Desc: "شاهد كيف توفر الصناديق المال مقارنة بالصناديق الكرتونية",
+      totalSavingsTitle: "إجمالي التوفير مع الصناديق",
+      totalSavingsTenYear: "إجمالي التوفير خلال 10 سنوات",
+      savePerWeek: "التوفير لكل أسبوع",
+      savePerMonth: "التوفير لكل شهر",
+      savePerYear: "التوفير لكل سنة",
+      decrease: "خفض {label}",
+      increase: "زيادة {label}"
+    }
+  };
+
+  function t(key, params={}){
+    const dict = translations[pageLang] || translations.en;
+    let str = dict[key] || translations.en[key] || key;
+    Object.keys(params).forEach(k=>{ str = str.replace(`{${k}}`, params[k]); });
+    return str;
+  }
+
+  if(pageLang === 'ar') document.body.dir = 'rtl';
+
   // Currency based on browser language
-  const lang = navigator.language || 'en';
-  const currency = lang.startsWith('en')
-    ? { symbol:'$', icon:'DollarSign', locale:lang }
-    : { symbol:'€', icon:'Euro', locale:lang };
+  const userLocale = navigator.language || 'en';
+  const currency = userLocale.startsWith('en')
+    ? { symbol:'$', icon:'DollarSign', locale:userLocale }
+    : { symbol:'€', icon:'Euro', locale:userLocale };
+
+  // Apply static translations
+  document.title = t('documentTitle');
+  const tp1 = document.getElementById('title-part1'); if(tp1) tp1.textContent = t('titlePart1') + ' ';
+  const tp2 = document.getElementById('title-part2'); if(tp2) tp2.textContent = t('titlePart2');
+  const tg = document.getElementById('tagline'); if(tg) tg.textContent = t('tagline');
+  const prevLbl = document.getElementById('prev-label'); if(prevLbl) prevLbl.textContent = t('previous');
+  const nextLbl = document.getElementById('next-label'); if(nextLbl) nextLbl.textContent = t('nextStep');
+  const ctaLbl = document.getElementById('cta-label'); if(ctaLbl) ctaLbl.textContent = t('cta');
 
   // --- State ---
   let currentStep = 0;
@@ -24,9 +532,9 @@
   let calculations = {};
 
   const steps = [
-    { title:"Your Current Packaging Costs", icon:"Package" },
-    { title:"ECS Crate Solution", icon:"Recycle" },
-    { title:"Cost Comparison", icon:"Calculator" }
+    { title:t('stepIndicator1'), icon:"Package" },
+    { title:t('stepIndicator2'), icon:"Recycle" },
+    { title:t('stepIndicator3'), icon:"Calculator" }
   ];
 
   // --- Utils ---
@@ -109,7 +617,7 @@
       <div class="space-y-2">
         <label class="block text-sm font-medium text-gray-700">${label}</label>
         <div class="number-input-container" data-container-for="${id}">
-          <button type="button" class="number-input-btn" data-dec="${id}" aria-label="Verlaag ${label}">
+          <button type="button" class="number-input-btn" data-dec="${id}" aria-label="${t('decrease',{label})}">
             ${icon('Minus')}
           </button>
           <div class="number-input-field-wrapper">
@@ -118,7 +626,7 @@
               inputmode="decimal" aria-live="polite" data-suffix="${suffix}">
             ${suffix ? `<span class="number-input-suffix" data-suffix-for="${id}">${suffix}</span>` : ''}
           </div>
-          <button type="button" class="number-input-btn" data-inc="${id}" aria-label="Verhoog ${label}">
+          <button type="button" class="number-input-btn" data-inc="${id}" aria-label="${t('increase',{label})}">
             ${icon('Plus')}
           </button>
         </div>
@@ -255,28 +763,28 @@
           <div class="${wrapClass}">
             <div class="step-header-section">
               <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-blue">${icon('Package','w-8 h-8')}</div>
-              <h2 class="text-2xl font-bold mb-2">Step 1: Current Packaging Costs</h2>
-              <p class="text-gray-600">Enter your current packaging costs and delivery frequency</p>
+              <h2 class="text-2xl font-bold mb-2">${t('step1Header')}</h2>
+              <p class="text-gray-600">${t('step1Desc')}</p>
             </div>
             <div class="step-inputs-section">
               <div class="grid grid-cols-2 gap-6">
-                ${numberInput('pricePerBox', pricePerBox, 'Your price per cardboard box (180 eggs)', currency.symbol, 0.01)}
-                ${numberInput('pricePerTray', pricePerTray, 'Your price per cardboard tray', currency.symbol, 0.01)}
-                ${numberInput('boxesPerShipment', boxesPerShipment, 'Boxes per delivery', '', 50, 50)}
-                ${numberInput('shipmentsPerWeek', shipmentsPerWeek, 'Deliveries per week', '', 1, 1)}
+                ${numberInput('pricePerBox', pricePerBox, t('pricePerBoxLabel'), currency.symbol, 0.01)}
+                ${numberInput('pricePerTray', pricePerTray, t('pricePerTrayLabel'), currency.symbol, 0.01)}
+                ${numberInput('boxesPerShipment', boxesPerShipment, t('boxesPerDeliveryLabel'), '', 50, 50)}
+                ${numberInput('shipmentsPerWeek', shipmentsPerWeek, t('deliveriesPerWeekLabel'), '', 1, 1)}
               </div>
             </div>
             <div class="step-info-section">
               <div class="info-box blue">
-                <div class="info-box-header">${icon('Calculator','w-5 h-5')}<span class="font-medium">Weekly Volume</span></div>
-                <p class="info-box-text">You ship ${calculations.boxesPerWeek} boxes per week (${boxesPerShipment} boxes × ${shipmentsPerWeek} shipments)</p>
+                <div class="info-box-header">${icon('Calculator','w-5 h-5')}<span class="font-medium">${t('weeklyVolumeTitle')}</span></div>
+                <p class="info-box-text">${t('weeklyVolumeText',{boxesPerWeek:calculations.boxesPerWeek,boxesPerShipment,shipmentsPerWeek})}</p>
               </div>
               <div class="info-box gray">
                 <div class="cost-display-section">
-                  <div class="cost-display-left">${icon('Wallet','w-5 h-5')}<span class="font-medium">Weekly packaging cost</span></div>
+                  <div class="cost-display-left">${icon('Wallet','w-5 h-5')}<span class="font-medium">${t('weeklyCostTitle')}</span></div>
                   <span class="cost-display-amount">${currency.symbol}${fmt(calculations.weeklyCostCurrent)}</span>
                 </div>
-                <p class="cost-breakdown">= ${calculations.boxesPerWeek} boxes × ( ${currency.symbol}${fmt(pricePerBox)} + 7 × ${currency.symbol}${fmt(pricePerTray)} )</p>
+                <p class="cost-breakdown">${t('costBreakdown',{boxesPerWeek:calculations.boxesPerWeek,unitBoxes:t('unitBoxes'),currency:currency.symbol,pricePerBox:fmt(pricePerBox),pricePerTray:fmt(pricePerTray)})}</p>
               </div>
             </div>
           </div>
@@ -289,39 +797,39 @@
           <div class="${wrapClass}">
             <div class="step-header-section">
               <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-green">${icon('Recycle','w-8 h-8')}</div>
-              <h2 class="text-2xl font-bold mb-2">Step 2: Durable Plastic Crate Solution</h2>
-              <p class="text-gray-600">Sustainable crates that last 10 years and eliminate the need for cardboard boxes and paper trays</p>
+              <h2 class="text-2xl font-bold mb-2">${t('step2Header')}</h2>
+              <p class="text-gray-600">${t('step2Desc')}</p>
             </div>
 
             <div class="step-info-section">
               <div class="info-box blue">
-                <div class="info-box-header">${icon('Recycle','w-5 h-5')}<span class="font-medium">Why 3x crates needed?</span></div>
-                <p class="info-box-text">You need 3 sets of crates in rotation: 1 set for cleaning, 1 set in return transport, and 1 set for current shipment. This ensures continuous operation. In this new setup, we assume plastic egg trays are already being used.</p>
+                <div class="info-box-header">${icon('Recycle','w-5 h-5')}<span class="font-medium">${t('whyCratesTitle')}</span></div>
+                <p class="info-box-text">${t('whyCratesText')}</p>
               </div>
 
               <div class="grid grid-cols-3 gap-6">
                 <div class="card green">
-                  <div class="card-header"><div class="title">${icon('CheckCircle','w-5 h-5')}<span>Crate Requirements</span></div></div>
-                  <div class="kpi"><span class="label">Crates per shipment</span><span class="value">${boxesPerShipment} crates</span></div>
-                  <div class="kpi"><span class="label">Rotation factor</span><span class="value">× 3</span></div>
-                  <div class="kpi"><span class="label">Total crates needed</span><span class="value">${calculations.cratesNeeded} crates</span></div>
-                  <div class="help">3 sets needed for rotation cycle</div>
+                  <div class="card-header"><div class="title">${icon('CheckCircle','w-5 h-5')}<span>${t('crateRequirementsTitle')}</span></div></div>
+                  <div class="kpi"><span class="label">${t('cratesPerShipmentLabel')}</span><span class="value">${boxesPerShipment} ${t('unitCrates')}</span></div>
+                  <div class="kpi"><span class="label">${t('rotationFactorLabel')}</span><span class="value">× 3</span></div>
+                  <div class="kpi"><span class="label">${t('totalCratesNeededLabel')}</span><span class="value">${calculations.cratesNeeded} ${t('unitCrates')}</span></div>
+                  <div class="help">${t('rotationHelp')}</div>
                 </div>
 
                 <div class="card blue">
-                  <div class="card-header"><div class="title">${icon('Target','w-5 h-5')}<span>Fixed Pricing</span></div></div>
-                  <div class="kpi"><span class="label">Price per crate</span><span class="value">${currency.symbol}${ecsCratePrice}</span></div>
-                  <div class="kpi"><span class="label">Lifespan</span><span class="value">${crateLifespan} years</span></div>
-                  <div class="kpi"><span class="label">Total investment</span><span class="value">${currency.symbol}${fmt(calculations.totalEcsInvestment)}</span></div>
-                  <div class="help">One-time investment</div>
+                  <div class="card-header"><div class="title">${icon('Target','w-5 h-5')}<span>${t('fixedPricingTitle')}</span></div></div>
+                  <div class="kpi"><span class="label">${t('pricePerCrateLabel')}</span><span class="value">${currency.symbol}${ecsCratePrice}</span></div>
+                  <div class="kpi"><span class="label">${t('lifespanLabel')}</span><span class="value">${crateLifespan} ${t('unitYears')}</span></div>
+                  <div class="kpi"><span class="label">${t('totalInvestmentLabel')}</span><span class="value">${currency.symbol}${fmt(calculations.totalEcsInvestment)}</span></div>
+                  <div class="help">${t('oneTimeInvestmentHelp')}</div>
                 </div>
 
                 <div class="card gray">
-                  <div class="card-header"><div class="title">${icon('Calculator','w-5 h-5')}<span>Annual Cost</span></div></div>
-                  <div class="kpi"><span class="label">Investment</span><span class="value">${currency.symbol}${fmt(calculations.totalEcsInvestment)}</span></div>
-                  <div class="kpi"><span class="label">Divided by</span><span class="value">${crateLifespan} years</span></div>
-                  <div class="kpi"><span class="label">Cost per year</span><span class="value">${currency.symbol}${fmt(calculations.ecsAnnualCost)}</span></div>
-                  <div class="help">Amortized over lifespan</div>
+                  <div class="card-header"><div class="title">${icon('Calculator','w-5 h-5')}<span>${t('annualCostTitle')}</span></div></div>
+                  <div class="kpi"><span class="label">${t('investmentLabel')}</span><span class="value">${currency.symbol}${fmt(calculations.totalEcsInvestment)}</span></div>
+                  <div class="kpi"><span class="label">${t('dividedByLabel')}</span><span class="value">${crateLifespan} ${t('unitYears')}</span></div>
+                  <div class="kpi"><span class="label">${t('costPerYearLabel')}</span><span class="value">${currency.symbol}${fmt(calculations.ecsAnnualCost)}</span></div>
+                  <div class="help">${t('amortizedHelp')}</div>
                 </div>
               </div>
             </div>
@@ -333,40 +841,40 @@
         // STEP 3: Complete redesign met werkende styling
         const breakEvenPercentage = Math.min(100, (12 / calculations.breakEvenMonths) * 100);
         const savingsPercentage = calculations.yearlyCostCurrent > 0 ? (calculations.savingsPerYear / calculations.yearlyCostCurrent) * 100 : 0;
-        
+
         html = `
           <div class="${wrapClass}">
             <div class="step-header-section">
               <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-orange">
                 ${icon('Calculator','w-8 h-8')}
               </div>
-              <h2 class="text-2xl font-bold mb-2">Step 3: Cost Comparison & Savings</h2>
-              <p class="text-gray-600">See how crates save you money compared to cardboard boxes</p>
+              <h2 class="text-2xl font-bold mb-2">${t('step3Header')}</h2>
+              <p class="text-gray-600">${t('step3Desc')}</p>
             </div>
-            
+
             <div class="step-info-section">
-              
+
               <!-- Total Savings Summary -->
               <div class="savings-summary">
                 <div class="savings-summary-header">
                   ${icon(currency.icon,'w-6 h-6')}
-                  <span class="savings-summary-title">Your Total Savings with crates</span>
+                  <span class="savings-summary-title">${t('totalSavingsTitle')}</span>
                 </div>
                 <div class="savings-summary-footer">
-                  <p>Total savings over 10 years</p>
+                  <p>${t('totalSavingsTenYear')}</p>
                   <p id="ecs-totalSavings">${currency.symbol}0.00</p>
                 </div>
                 <div class="savings-metrics">
                   <div class="savings-metric">
-                    <p class="savings-metric-label">Save per Week</p>
+                    <p class="savings-metric-label">${t('savePerWeek')}</p>
                     <p class="savings-metric-value">${currency.symbol}${fmt(calculations.savingsPerWeek)}</p>
                   </div>
                   <div class="savings-metric">
-                    <p class="savings-metric-label">Save per Month</p>
+                    <p class="savings-metric-label">${t('savePerMonth')}</p>
                     <p class="savings-metric-value">${currency.symbol}${fmt(calculations.monthlySavings)}</p>
                   </div>
                   <div class="savings-metric">
-                    <p class="savings-metric-label">Save per Year</p>
+                    <p class="savings-metric-label">${t('savePerYear')}</p>
                     <p class="savings-metric-value">${currency.symbol}${fmt(calculations.savingsPerYear)}</p>
                   </div>
                 </div>
@@ -450,7 +958,7 @@
     renderStep({animate:true});
     $('#ecs-nextBtn').addEventListener('click', next);
     $('#ecs-prevBtn').addEventListener('click', prev);
-    $('#ecs-cta').addEventListener('click', ()=> alert('Contact us through our website for your free quote!'));
+    $('#ecs-cta').addEventListener('click', ()=> alert(t('alertMessage')));
   }
   init();
 
