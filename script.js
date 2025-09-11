@@ -260,8 +260,8 @@
             </div>
             <div class="step-inputs-section">
               <div class="grid grid-cols-2 gap-6">
-                ${numberInput('pricePerBox', pricePerBox, 'Price per cardboard box (180 eggs)', currency.symbol, 0.01)}
-                ${numberInput('pricePerTray', pricePerTray, 'Price per cardboard tray', currency.symbol, 0.01)}
+                ${numberInput('pricePerBox', pricePerBox, 'Your price per cardboard box (180 eggs)', currency.symbol, 0.01)}
+                ${numberInput('pricePerTray', pricePerTray, 'Your price per cardboard tray', currency.symbol, 0.01)}
                 ${numberInput('boxesPerShipment', boxesPerShipment, 'Boxes per shipment', '', 50, 50)}
                 ${numberInput('shipmentsPerWeek', shipmentsPerWeek, 'Shipments per week', '', 1, 1)}
               </div>
@@ -289,7 +289,7 @@
           <div class="${wrapClass}">
             <div class="step-header-section">
               <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-green">${icon('Recycle','w-8 h-8')}</div>
-              <h2 class="text-2xl font-bold mb-2">Step 2: Crate Solution</h2>
+              <h2 class="text-2xl font-bold mb-2">Step 2: Durable Plastic Crate Solution</h2>
               <p class="text-gray-600">Sustainable crates that last 10 years and eliminate the need for cardboard trays</p>
             </div>
 
@@ -358,12 +358,12 @@
                     <p class="savings-metric-value">${currency.symbol}${fmt(calculations.savingsPerWeek)}</p>
                   </div>
                   <div class="savings-metric">
-                    <p class="savings-metric-label">Save per Year</p>
-                    <p class="savings-metric-value">${currency.symbol}${fmt(calculations.savingsPerYear)}</p>
-                  </div>
-                  <div class="savings-metric">
                     <p class="savings-metric-label">Save per Month</p>
                     <p class="savings-metric-value">${currency.symbol}${fmt(calculations.monthlySavings)}</p>
+                  </div>
+                  <div class="savings-metric">
+                    <p class="savings-metric-label">Save per Year</p>
+                    <p class="savings-metric-value">${currency.symbol}${fmt(calculations.savingsPerYear)}</p>
                   </div>
                 </div>
                 <div class="savings-summary-footer">
