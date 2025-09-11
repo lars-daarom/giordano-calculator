@@ -352,6 +352,10 @@
                   ${icon(currency.icon,'w-6 h-6')}
                   <span class="savings-summary-title">Your Total Savings with crates</span>
                 </div>
+                <div class="savings-summary-footer">
+                  <p>Total savings over 10 years</p>
+                  <p id="ecs-totalSavings">${currency.symbol}0.00</p>
+                </div>
                 <div class="savings-metrics">
                   <div class="savings-metric">
                     <p class="savings-metric-label">Save per Week</p>
@@ -365,10 +369,6 @@
                     <p class="savings-metric-label">Save per Year</p>
                     <p class="savings-metric-value">${currency.symbol}${fmt(calculations.savingsPerYear)}</p>
                   </div>
-                </div>
-                <div class="savings-summary-footer">
-                  <p>Total savings over 10 years</p>
-                  <p id="ecs-totalSavings">${currency.symbol}0.00</p>
                 </div>
               </div>
             </div>
