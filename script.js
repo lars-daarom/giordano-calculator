@@ -24,7 +24,7 @@
   let calculations = {};
 
   const steps = [
-    { title:"Current Packaging Costs", icon:"Package" },
+    { title:"Your Current Packaging Costs", icon:"Package" },
     { title:"ECS Crate Solution", icon:"Recycle" },
     { title:"Cost Comparison", icon:"Calculator" }
   ];
@@ -262,8 +262,8 @@
               <div class="grid grid-cols-2 gap-6">
                 ${numberInput('pricePerBox', pricePerBox, 'Your price per cardboard box (180 eggs)', currency.symbol, 0.01)}
                 ${numberInput('pricePerTray', pricePerTray, 'Your price per cardboard tray', currency.symbol, 0.01)}
-                ${numberInput('boxesPerShipment', boxesPerShipment, 'Boxes per shipment', '', 50, 50)}
-                ${numberInput('shipmentsPerWeek', shipmentsPerWeek, 'Shipments per week', '', 1, 1)}
+                ${numberInput('boxesPerShipment', boxesPerShipment, 'Boxes per delivery', '', 50, 50)}
+                ${numberInput('shipmentsPerWeek', shipmentsPerWeek, 'Deliveries per week', '', 1, 1)}
               </div>
             </div>
             <div class="step-info-section">
@@ -290,7 +290,7 @@
             <div class="step-header-section">
               <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 icon-bg-green">${icon('Recycle','w-8 h-8')}</div>
               <h2 class="text-2xl font-bold mb-2">Step 2: Durable Plastic Crate Solution</h2>
-              <p class="text-gray-600">Sustainable crates that last 10 years and eliminate the need for cardboard trays</p>
+              <p class="text-gray-600">Sustainable crates that last 10 years and eliminate the need for cardboard boxes and paper trays</p>
             </div>
 
             <div class="step-info-section">
