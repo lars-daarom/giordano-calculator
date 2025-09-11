@@ -159,7 +159,7 @@
   #ecs-calc .savings-metric{text-align:center;padding:1rem;background:rgba(255,255,255,.9);border-radius:.75rem}
   #ecs-calc .savings-metric-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#15803d;margin-bottom:.5rem;font-weight:600}
   #ecs-calc .savings-metric-value{font-size:1.75rem;font-weight:900;color:#14532d;line-height:1}
-  #ecs-calc .savings-summary-footer{text-align:center;margin-top:1.25rem;padding-top:1.25rem;border-top:2px solid rgba(134,239,172,.3)}
+  #ecs-calc .savings-summary-footer{text-align:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:2px solid rgba(134,239,172,.3)}
   #ecs-calc .savings-summary-footer p{font-size:.875rem;color:#15803d;margin-bottom:.5rem; margin-top:.5rem}
   #ecs-calc #ecs-totalSavings{font-size:2.5rem;font-weight:900;color:#14532d;line-height:1}
   #ecs-calc .icon-bg-blue{background:#dbeafe}
@@ -427,7 +427,7 @@
     #ecs-calc .savings-metric{background:rgba(31,41,55,.9)}
     #ecs-calc .savings-metric-label{color:#6ee7b7}
     #ecs-calc .savings-metric-value{color:#d1fae5}
-    #ecs-calc .savings-summary-footer{border-top-color:rgba(16,185,129,.3)}
+    #ecs-calc .savings-summary-footer{border-bottom-color:rgba(16,185,129,.3)}
     #ecs-calc .savings-summary-footer p{color:#6ee7b7}
     #ecs-calc #ecs-totalSavings{color:#d1fae5}
     #ecs-calc .icon-bg-blue{background:#1e3a8a}
